@@ -27,13 +27,13 @@ end
 def print(students)
   count = 0
   until count == students.length
-    puts "#{count + 1} #{students[count][:name]} country of birth #{students[count][:country]} (#{students[count][:cohort]} cohort)"
+    puts "#{count + 1} #{students[count][:name]}, country of birth #{students[count][:country]} (#{students[count][:cohort]} cohort)".center(70, "*")
     count += 1
   end
 end
 
 def print_footer(students)
-  puts "Overall, we have #{students.count} great students"
+  puts "Overall, we have #{students.count} great students".center(70, "*")
 end
 
 students = input_students
