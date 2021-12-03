@@ -23,8 +23,7 @@ def print_header
 end
 
 def print(students)
-  students.select {|student| student[:name].start_with?("h")}.each.with_index(1) do |student, index|
-    student[:name].start_with?("M")
+  students.select {|student| student[:name].length < 12}.each.with_index(1) do |student, index|
     puts "#{index}. #{student[:name]} (#{student[:cohort]} cohort)"
   end
 end
