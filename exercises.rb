@@ -2,7 +2,7 @@ def input_students
   puts "Please enter the names of the students"
   puts "To finish, just hit return twice"
   # create an empty array
-  students = []
+   students = []
   # get the first name
   name = gets.chomp
   # while the name is not empty, repeat this code
@@ -23,8 +23,10 @@ def print_header
 end
 
 def print(students)
-  students.select {|student| student[:name].length < 12}.each.with_index(1) do |student, index|
-    puts "#{index}. #{student[:name]} (#{student[:cohort]} cohort)"
+  count = 0
+  until count == students.length
+    puts "#{count + 1} #{students[count][:name]} (#{students[count][:cohort]} cohort)"
+    count += 1
   end
 end
 
