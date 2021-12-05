@@ -4,9 +4,9 @@ def input_students(d_name = "N/A", d_cohort = :December)
   # create an empty array
   students = []
   # get the first name
-  name = gets.chomp
+  name = gets.strip
   puts "Please enter the name of the cohort"
-  cohort = gets.chomp
+  cohort = gets.strip
   if name == ""
     name = d_name.to_sym
   end
@@ -24,8 +24,8 @@ def input_students(d_name = "N/A", d_cohort = :December)
       puts "Now we have #{students.count} student"
     end
     # get another name from the user
-    name = gets.chomp
-    cohort = gets.chomp
+    name = gets.strip
+    cohort = gets.strip
   end
   # return the array of students
   students
