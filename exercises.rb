@@ -4,15 +4,13 @@ def input_students(d_name = "N/A", d_cohort = :December)
   # create an empty array
   students = []
   # get the first name
-  name = gets.strip
+  name = gets.chomp
   puts "Please enter the name of the cohort"
-  cohort = gets.strip
-  if name == ""
-    name = d_name.to_sym
-  end
-  if cohort == ""
-    cohort = d_cohort.to_sym
-  end
+  cohort = gets.chomp
+
+  return 1 if name == ""
+  
+  cohort = d_cohort.to_sym if cohort == ""
 
   # while the name is not empty, repeat this code
   while !name.empty? do
@@ -24,8 +22,8 @@ def input_students(d_name = "N/A", d_cohort = :December)
       puts "Now we have #{students.count} student"
     end
     # get another name from the user
-    name = gets.strip
-    cohort = gets.strip
+    name = gets.chomp
+    cohort = gets.chomp
   end
   # return the array of students
   students
@@ -37,6 +35,11 @@ def print_header
 end
 
 def print(students)
+  if students == 1
+    puts "No students"
+    exit
+  end
+
   sort_by_cohort = {}
 
   students.each do |student|
