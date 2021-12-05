@@ -1,19 +1,27 @@
-def input_students
-  puts "Please enter the name and country of birth of the students"
+def input_students(d_name = "N/A", d_cohort = :December)
+  puts "Please enter the name of the students"
   puts "To finish, just hit return twice"
   # create an empty array
-   students = []
+  students = []
   # get the first name
   name = gets.chomp
-  country = gets.chomp
+  puts "Please enter the name of the cohort"
+  cohort = gets.chomp
+  if name == ""
+    name = d_name.to_sym
+  end
+  if cohort == ""
+    cohort = d_cohort.to_sym
+  end
+
   # while the name is not empty, repeat this code
   while !name.empty? do
     # add the student hash to the array
-    students << {name: name, cohort: :november, country: country}
+    students << {name: name, cohort: cohort, country: :UK}
     puts "Now we have #{students.count} students"
     # get another name from the user
     name = gets.chomp
-    country = gets.chomp
+    cohort = gets.chomp
   end
   # return the array of students
   students
@@ -25,11 +33,23 @@ def print_header
 end
 
 def print(students)
-  count = 0
-  until count == students.length
-    puts "#{count + 1} #{students[count][:name]}, country of birth #{students[count][:country]} (#{students[count][:cohort]} cohort)".center(70, "*")
-    count += 1
+  sort_by_cohort = {}
+
+  students.each do |student|
+    cohort = student[:cohort]
+    name = student[:name]
+
+    if sort_by_cohort[cohort] == nil
+      sort_by_cohort[cohort] = [name]
+    else
+      sort_by_cohort[cohort].push(name)
+    end
   end
+  sort_by_cohort.each do |key, value|
+    values = value.join(", ")
+    puts "#{key}: #{values}"
+  end
+   
 end
 
 def print_footer(students)
@@ -38,6 +58,7 @@ end
 
 students = input_students
 # nothing happens untill we call the methods
+
 print_header
 print(students)
 print_footer(students)
